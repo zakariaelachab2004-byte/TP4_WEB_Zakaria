@@ -114,15 +114,39 @@ public class LlmClient implements Serializable {
         // 6. Configuration du RAG
 
         // Transformation des questions avec l'historique
+
         CompressingQueryTransformer queryTransformer =
                 new CompressingQueryTransformer(model);
 
-        // RAG : transformation + routage intelligent
         RetrievalAugmentor augmentor =
                 DefaultRetrievalAugmentor.builder()
-                        .queryTransformer(queryTransformer)
+                        .queryTransformer(query -> {
+
+                            var requetesTransformees =
+                                    queryTransformer.transform(query);
+
+                            for (var requeteTransformee : requetesTransformees) {
+
+                                System.out.println(
+                                        "[TRANSFORMATION] Question originale : "
+                                                + query.text()
+                                );
+
+                                System.out.println(
+                                        "[TRANSFORMATION] Question reformulée : "
+                                                + requeteTransformee.text()
+                                );
+                            }
+
+                            return requetesTransformees;
+                        })
                         .queryRouter(routeurAvecLogs)
                         .build();
+
+        System.out.println(
+                "[RAG] Transformation des questions activée."
+        );
+
 
         System.out.println(
                 "[RAG] Transformation des questions activée."

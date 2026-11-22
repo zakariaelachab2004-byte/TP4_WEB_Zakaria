@@ -39,7 +39,9 @@ public class Bb implements Serializable {
                 "Tu es un assistant pédagogique qui répond " +
                         "à partir des documents fournis."
         );
+        roleSysteme = rolesSysteme.get(0);
     }
+
 
     public String envoyer() {
 
@@ -80,7 +82,7 @@ public class Bb implements Serializable {
         reponse = "";
         conversation = "";
 
-        roleSysteme = null;
+        roleSysteme = rolesSysteme.get(0);
         roleSystemeChangeable = true;
 
         return null;
