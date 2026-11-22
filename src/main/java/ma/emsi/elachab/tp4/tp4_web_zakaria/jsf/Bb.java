@@ -2,8 +2,7 @@ package ma.emsi.elachab.tp4.tp4_web_zakaria.jsf;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import ma.emsi.elachab.tp4.llm.LlmClient;
-
+import ma.emsi.elachab.tp4.tp4_web_zakaria.llm.LlmClient;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
